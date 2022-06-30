@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+  <style>
+    :root {
+      border: 1px solid #ccc;
+    }
+  </style>
+  <script src="./node_modules/html2canvas/dist/html2canvas.js"></script>
+</head>
+<body>
+  <button onclick="download()">下载canvas图片</button>
+  <canvas width="1000" height="1000" id="can"></canvas>
+  <script>
+    function downloadMessage(url,filename){
+      var a = document.createElement("a")
+      a.href = url
+      a.download = filename
+      a.click();
+      a = undefined;
+    }
+    function download(){
+      var dataURL = null;
+      console.log(html2canvas)
+      html2canvas(document.getElementById("can"),{useCORS:true}).then(canvas => {
+        //转换为图片路径
+        dataURL = canvas.toDataURL("image/png")
+        console.log("图片路径："+dataURL)
+        downloadMessage(dataURL,"test")
+      })
+      
+    }
+    const canvas = document.getElementById("can")
+    console.dir(canvas)
+    canvas.style.border = "1px solid #ccc"
+    // 获取上下文
+    var ctx = canvas.getContext('2d')
+    console.log(ctx)
+    // 绘制一个三角形
+    // 开始规划路径
+    ctx.beginPath()
+    // 移动起始点
+    ctx.moveTo(50,50)
+    // 绘制线
+    ctx.lineTo(50,150)
+    ctx.lineTo(150,150)
+    // 闭合路径
+    ctx.closePath()
+    // 填充
+    ctx.fillStyle = "red"
+    ctx.fill()
+    // 描边路径
+    ctx.stroke()
+
+    // 快速绘制描边矩形  相当于 上面从beginPath到stroke
+    ctx.strokeRect(200,50,100,50)
+    // 快速绘制填充矩形
+    ctx.fillRect(350,50,100,50)
+    // 绘制圆
+    ctx.beginPath()
+    ctx.arc(200,200,50,0,1.5*Math.PI)
+    ctx.fillStyle = 'blue'
+    ctx.fill()
+    ctx.stroke()
+    // 绘制文字 填充 描边
+    ctx.beginPath()
+    ctx.fillStyle = 'purple'
+    ctx.strokeStyle = 'blue'
+    ctx.font = "30px'微软雅黑'"
+    ctx.textAlign = 'left'
+    ctx.textBaseline = 'bottom'
+    ctx.fillText('gaominghui',0,220)
+    ctx.strokeText("gaominghui",0,250)
+    // 绘制图片
+    // ctx.drawImage('./test.jpg',0,250)
+    var img = new Image()
+    img.src = './test.jpg'
+    img.alt = '测试图片啦'
+    img.onload = function(){
+      ctx.drawImage(img,0,250,50,50)
+    }
+  </script>
+</body>
+</html>

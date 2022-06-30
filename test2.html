@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .main {
+        background-color: #fff;
+        transition: all 300ms;
+    }
+  </style>
+  <script src="./test2.js"></script>
+</head>
+<body>
+  <div>
+    <div id="result"></div>
+    <button onclick="start()">开始工作</button>
+    <button onclick="stop()">停止工作</button>
+  </div>
+  <script>
+    var w;
+    function start(){
+      w = new Worker("http://127.0.0.1:5500/test2.js")
+      console.log(w)
+      w.onmessage = function(event){
+        console.log(event.data)
+        document.getElementById("result").innerHTML = event.data
+      }
+
+    }
+    function stop(){
+      w.terminate();
+      w = undefined;
+    }
+  </script>
+</body>
+</html>

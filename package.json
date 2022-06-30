@@ -4,17 +4,35 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build --report",
+    "lint": "vue-cli-service lint",
+    "build:coupon": "vue-cli-service build --target lib --name coupon packages/coupon/index.vue"
   },
   "dependencies": {
+    "@xiaoe/goose": "2.36.10",
+    "@xiaoe/mimir": "^0.1.9-t0530",
+    "@xiaoe/sense": "2.18.9",
+    "@xiaoe/xiaoe-marketing-module": "^0.7.47-t0616",
+    "cdn-accessor": "0.0.5",
     "core-js": "^3.8.3",
+    "html2canvas": "^1.4.1",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
     "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "^5.0.4",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "eslint": "^8.14.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^8.0.3",
     "vue-template-compiler": "^2.6.14"
   }
 }
